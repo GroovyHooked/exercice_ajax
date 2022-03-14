@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <details>
+      <summary>Example</summary>
+      <div class="artist">
+        <img src="https://groupietrackers.herokuapp.com/api/images/pinkfloyd.jpeg">
+        <h1>Pink Floyd</h1>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Promise version</summary>
+      <button id="promise-button">Fetch artists</button>
+      <section id="promise-container"></section>
+    </details>
+
+    <details open>
+      <summary>Async/await version</summary>
+      <button id="async-await-button">Fetch artists</button>
+      <section id="async-await-container"></section>
+    </details>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+body {
+  font-family: sans-serif;
+}
+details {
+  margin: 0 0 20px;
+}
+summary {
+  cursor: pointer;
+  margin: 0 0 20px;
+}
+button {
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #ccc;
+}
+section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.artist {
+  width: 300px;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 20px;
+  box-shadow: 5px 5px #aaa;
+}
+.artist img {
+  width: 100%;
+}
+.artist h1 {
+  text-align: center;
+}
