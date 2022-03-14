@@ -38,3 +38,8 @@ section {
 .artist h1 {
   text-align: center;
 }
+.results{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
