@@ -48,7 +48,7 @@ const fetchArtist = () => {
 
 const asyncAwaitCall = async () => {
   const results = await fetch("./api/artists.json");
-  results.json().then((e) => artistsData.push(e));
+  await results.json().then((e) => artistsData.push(e));
   return artistsData[0].forEach((element) => stickerMaker(element, results2));
 };
 
