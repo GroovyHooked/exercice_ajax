@@ -38,7 +38,7 @@ section {
 .artist h1 {
   text-align: center;
 }
-.results{
+.results1, .results2{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

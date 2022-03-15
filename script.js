@@ -1,10 +1,11 @@
 const asyncAwaitButton = document.querySelector("#async-await-button");
 const promiseButton = document.querySelector("#promise-button");
-const results = document.querySelector(".results");
-
+const results1 = document.querySelector(".results1");
+const results2 = document.querySelector(".results2");
 let arr = [];
 let artistsData = [];
-const sticker = (element) => {
+
+const sticker = (element, result) => {
   const div = document.createElement("div");
   div.className = "artist";
   const img = document.createElement("img");
@@ -12,7 +13,7 @@ const sticker = (element) => {
   img.src = element.image;
   h1.innerText = element.name;
   div.append(img, h1);
-  results.appendChild(div);
+  result.appendChild(div);
 };
 
 const removeChilds = (parent) => {
@@ -21,7 +22,11 @@ const removeChilds = (parent) => {
   }
 };
 
-
+const fetchData = async () => {
+  const results = await fetch("./api/artists.json");
+  results.json().then((e) => artistsData.push(e));
+  return artistsData[0].forEach((element) => sticker(element, results2));
+};
 
 promiseButton.addEventListener("click", () => {
   fetch("./api/artists.json")
@@ -33,25 +38,21 @@ promiseButton.addEventListener("click", () => {
     })
     .catch((err) => console.log(err));
 
-  if (results.hasChildNodes()) {
-    removeChilds(results);
+  if (results1.hasChildNodes()) {
+    removeChilds(results1);
   } else {
-    arr.forEach((element) => sticker(element));
+    arr.forEach((element) => sticker(element, results1));
   }
 });
 
 asyncAwaitButton.addEventListener("click", () => {
-
-  const fetchData = async () => {
-  const results = await fetch("./api/artists.json")
-  return results.json();
-}
-  try{
-     fetchData().then(e => artistsData.push(e));
-     console.log("artist => ", artistsData)
-    //artistsData.forEach((artist) => console.log("artist => ", artist.name));
-  }
-  catch(e){
-    console.error(e)
+  if (results2.hasChildNodes()) {
+    removeChilds(results2);
+  } else {
+    try {
+      fetchData();
+    } catch (e) {
+      console.error(e);
+    }
   }
 });
