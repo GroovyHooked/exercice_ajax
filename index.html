@@ -15,18 +15,24 @@
         <h1>Pink Floyd</h1>
       </div>
     </details>
-
-    <details open>
+<div>
+  <details open>
+    <div class="first">Closed</div>
       <summary>Promise version</summary>
       <button id="promise-button">Fetch artists</button>
       <section id="promise-container"></section>
     </details>
+</div>
+<details open>
+  <div class="second">Closed</div>
+  <summary>Async/await version</summary>
+  <button id="async-await-button">Fetch artists</button>
+  <section id="async-await-container"></section>
+</details>
+    
+<div>
 
-    <details open>
-      <summary>Async/await version</summary>
-      <button id="async-await-button">Fetch artists</button>
-      <section id="async-await-container"></section>
-    </details>
+</div>
     <div class="results1"></div>
     <div class="results2"></div>
     <script src="script.js"></script>
