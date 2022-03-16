@@ -5,8 +5,13 @@ const results2 = document.querySelector(".results2");
 const openClose1 = document.querySelector(".first");
 const openClose2 = document.querySelector(".second");
 
+const removeChilds = (parent) => {
+  while (parent.lastChild) {
+    parent.removeChild(parent.lastChild);
+  }
+};
 
-const stickerMaker = ( data, resultDisplay) => {
+const stickerMaker = ({ ...data }, resultDisplay) => {
   const div = document.createElement("div");
   div.className = "artist";
   const img = document.createElement("img");
@@ -17,23 +22,15 @@ const stickerMaker = ( data, resultDisplay) => {
   resultDisplay.appendChild(div);
 };
 
-const removeChilds = (parent) => {
-  while (parent.lastChild) {
-    parent.removeChild(parent.lastChild);
-  }
-};
-
-// const storeInArray = (value) => {
-//   value.forEach((element) => {
-//     arr.push({ name: element.name, image: element.image });
-//   });
-// };
-
-const functionFetch = (path) => {
-  fetch(path)
+const functionFetch = () => {
+  fetch("./api/artists.json")
     .then((response) => response.json())
-    .then((res) => stickerMaker({name: res.name, image: res.image}, results1))
-    .catch((err) => console.log(err))
+    .then((res) =>
+      res.forEach((artist) =>
+        stickerMaker({ name: artist.name, image: artist.image }, results1)
+      )
+    )
+    .catch((err) => console.error(err));
 };
 
 const fetchArtist = () => {
@@ -42,15 +39,17 @@ const fetchArtist = () => {
     removeChilds(results1);
   } else {
     openClose1.innerText = "Open";
-    functionFetch("./api/artists.json")
+    functionFetch();
   }
 };
 
 const asyncAwaitCall = async () => {
   const results = await fetch("./api/artists.json");
-  await results.json().then((e) => e.forEach((element) => {
-    stickerMaker({ name: element.name, image: element.image}, results2);
-  }));
+  await results.json().then((e) =>
+    e.forEach((element) => {
+      stickerMaker({ name: element.name, image: element.image }, results2);
+    })
+  );
 };
 
 const asyncArtist = () => {
